@@ -5,8 +5,10 @@ import MainButton from "../atoms/MyButton";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { BiSearch, BiCloset } from "react-icons/bi";
+import { AiFillCloseCircle } from "react-icons/ai";
 
-const SearchHeader = () => {
+const SearchHeader = ({ ...props }) => {
+  const { getKeyword } = props;
   const [searchValue, setSearchValue] = useState("");
   const [showSearch, setShowSearch] = useState(true);
 
@@ -17,6 +19,7 @@ const SearchHeader = () => {
   const backNormal = () => {
     setSearchValue("");
     setShowSearch(true);
+    getKeyword("");
   };
 
   const keyDown = (e) => {
@@ -25,6 +28,7 @@ const SearchHeader = () => {
       setShowSearch(false);
       console.log("enter key pressed");
       setSearchValue(e.target.value);
+      getKeyword(e.target.value);
       console.log(searchValue);
     }
   };
@@ -89,10 +93,16 @@ const SearchHeader = () => {
             style={
               showSearch
                 ? { display: "none" }
-                : { display: "flex", justifyContent: "left" }
+                : {
+                    display: "flex",
+                    justifyContent: "left",
+                  }
             }
           >
-            <BiCloset onClick={() => backNormal()} />
+            <AiFillCloseCircle
+              onClick={() => backNormal()}
+              style={{ width: 30, height: 30 }}
+            />
           </Grid>
 
           {/* <Grid item xs={1}>

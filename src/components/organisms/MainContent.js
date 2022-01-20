@@ -4,15 +4,30 @@ import { getPhotos } from "../../redux/photo/photoActions";
 // import { getPhotos } from "../../redux";
 import WeatherCard from "../molecules/WeatherCard";
 
-const MainContent = ({ photoData, getPhoto }) => {
+const MainContent = ({ photoData, getPhoto, ...props }) => {
   const [mount, setMount] = useState(false);
+  const { keyword } = props;
+  const filterResult = (kk) => {
+    const list = photoData.photos;
+    let newList = [];
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].alt_description && list[i].alt_description.includes(kk)) {
+        newList.push(list[i]);
+      }
+    }
+    console.log("hgdfhdshf", newList);
+    return newList;
+  };
+  filterResult();
+
   useEffect(() => {
+    // let filtered = photoData.photos.filter(filterResult(keyword));
     getPhoto();
     // if (!mount) {
     //   setMount(true);
     //   getPhoto();
     // }
-  }, []);
+  }, [keyword]);
 
   return (
     <div
@@ -25,7 +40,22 @@ const MainContent = ({ photoData, getPhoto }) => {
         flexWrap: "wrap",
       }}
     >
-      {photoData.loading ? (
+      {keyword ? (
+        filterResult(keyword).map((i, k) => (
+          // <h2 key={k}>hel {i.id} </h2>
+          <div key={k}>
+            <WeatherCard
+              imgSrc={i.urls.small}
+              description={
+                i.alt_description
+                  ? i.alt_description.substring(0, 20) + "..."
+                  : "No Description"
+              }
+              user={i.user.name}
+            />
+          </div>
+        ))
+      ) : photoData.loading ? (
         <div>
           <WeatherCard />
           <WeatherCard />
@@ -41,13 +71,28 @@ const MainContent = ({ photoData, getPhoto }) => {
       ) : photoData.photos[0] ? (
         photoData.photos.map((i, k) => (
           <div key={k}>
-            <h2>{i.name}</h2>
-            <WeatherCard />
+            <WeatherCard
+              imgSrc={i.urls.small}
+              description={
+                i.alt_description
+                  ? i.alt_description.substring(0, 20) + "..."
+                  : "No Description"
+              }
+              user={i.user.name}
+            />
           </div>
         ))
       ) : (
-        // <h2>{photoData.photos[5].name}</h2>
-        <h2>nothing to show</h2>
+        <div>
+          <WeatherCard />
+          <WeatherCard />
+          <WeatherCard />
+          <WeatherCard />
+          <WeatherCard />
+          <WeatherCard />
+          <WeatherCard />
+          <WeatherCard />
+        </div>
       )}
     </div>
   );
