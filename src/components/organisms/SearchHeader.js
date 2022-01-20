@@ -9,6 +9,7 @@ import { BiSearch, BiCloset } from "react-icons/bi";
 const SearchHeader = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showSearch, setShowSearch] = useState(true);
+
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
