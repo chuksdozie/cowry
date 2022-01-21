@@ -10,9 +10,9 @@ import Cloud from "../../resources/cloud.jpeg";
 import Loader from "../../resources/placeholder.gif";
 import { AiOutlineCloud } from "react-icons/ai";
 
-const WeatherCard = ({ photoData, imgSrc, description, user }) => {
+const WeatherCard = ({ photoData, imgSrc, description, user, onClick }) => {
   return (
-    <div style={{ margin: "15px 5px" }}>
+    <div style={{ margin: "15px 5px" }} onClick={onClick}>
       <Card sx={{ maxWidth: 250, maxHeight: 330 }}>
         {photoData.photos[0] ? (
           <div
