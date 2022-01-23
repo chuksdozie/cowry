@@ -13,15 +13,12 @@ const initialState = {
 const photoReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_PHOTOS:
-      console.log(state.photos);
-      console.log("still loading");
       return {
         ...state,
         loading: true,
       };
 
     case LOAD_PHOTOS_SUCCESS:
-      console.log("success");
       return {
         photos: action.payload,
         loading: false,
@@ -29,7 +26,6 @@ const photoReducer = (state = initialState, action) => {
       };
 
     case LOAD_PHOTOS_FAILURE:
-      console.log("failed");
       return {
         photos: [],
         loading: false,

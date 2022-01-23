@@ -16,12 +16,9 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
   const handleOpen = (x) => {
     setSelection(x);
     setOpen(true);
-    console.log(open, x);
-    console.log(11111111, selection);
   };
   const handleClose = () => {
     setOpen(false);
-    console.log(open, selection);
   };
   const { keyword } = props;
   const filterResult = (kk) => {
@@ -32,19 +29,15 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
         newList.push(list[i]);
       }
     }
-    console.log("hgdfhdshf", newList);
     return newList;
   };
-  filterResult();
+  // filterResult();
 
   useEffect(() => {
     // let filtered = photoData.photos.filter(filterResult(keyword));
     getPhoto();
-    // if (!mount) {
-    //   setMount(true);
-    //   getPhoto();
     // }
-  }, [keyword]);
+  }, [getPhoto]);
 
   return (
     <div
@@ -59,7 +52,6 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
     >
       {keyword ? (
         filterResult(keyword).map((i, k) => (
-          // <h2 key={k}>hel {i.id} </h2>
           <div key={k}>
             <WeatherCard
               onClick={() => handleOpen(i)}
@@ -149,11 +141,6 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
                 style={{
                   height: "80%",
                   width: "100%",
-                  // background: `linearGradient(
-                  //   rgba(245, 246, 252, 0.52),
-                  //   rgba(117, 19, 93, 0.73)
-                  // ),url(${Cloud})`,
-                  // backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1),rgba(0, 0, 0, 0.93)),url(${selection.urls.raw})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                 }}

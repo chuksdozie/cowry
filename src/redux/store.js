@@ -7,11 +7,6 @@ import photoReducer from "./photo/photoReducer";
 const rootReducer = combineReducers({
   photo: photoReducer,
 });
-// const composeEnhancer =
-//   (window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//     window.__REDUX_DEVTOOLS_EXTENSION__()) ||
-//   compose;
-// const enhancers = [composeEnhancer, applyMiddleware(thunk)];
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(logger, thunk))

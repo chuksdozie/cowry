@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Text from "../atoms/Text";
+// import Text from "../atoms/Text";
 import InputBox from "../atoms/InputBox";
 import MainButton from "../atoms/MyButton";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { BiSearch, BiCloset } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const SearchHeader = ({ ...props }) => {
@@ -23,13 +23,11 @@ const SearchHeader = ({ ...props }) => {
   };
 
   const keyDown = (e) => {
-    console.log(e.keyCode);
     if (e.keyCode === 13 && searchValue) {
       setShowSearch(false);
-      console.log("enter key pressed");
+
       setSearchValue(e.target.value);
       getKeyword(e.target.value);
-      console.log(searchValue);
     }
   };
   return (
@@ -104,10 +102,6 @@ const SearchHeader = ({ ...props }) => {
               style={{ width: 30, height: 30 }}
             />
           </Grid>
-
-          {/* <Grid item xs={1}>
-            <MainButton color="#808080" text={<BiSearch />} />
-          </Grid> */}
         </Grid>
       </div>
     </div>

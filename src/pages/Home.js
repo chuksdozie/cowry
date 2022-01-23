@@ -7,7 +7,6 @@ const Home = () => {
 
   // callback to update state
   const getKeyword = (key) => {
-    // console.log(key, "88");
     setKeyword(key);
   };
   return (
