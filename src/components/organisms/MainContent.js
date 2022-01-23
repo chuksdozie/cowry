@@ -25,7 +25,10 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
     const list = photoData.photos;
     let newList = [];
     for (let i = 0; i < list.length; i++) {
-      if (list[i].alt_description && list[i].alt_description.includes(kk)) {
+      if (
+        list[i].alt_description &&
+        list[i].alt_description.includes(kk.toLowerCase())
+      ) {
         newList.push(list[i]);
       }
     }
