@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import thunk from "redux-thunk";
 import photoReducer from "./photo/photoReducer";
 
@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
 });
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(logger, thunk))
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 export default store;

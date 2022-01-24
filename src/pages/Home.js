@@ -10,7 +10,14 @@ const Home = () => {
     setKeyword(key);
   };
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
       <SearchHeader getKeyword={getKeyword} />
       <MainContent keyword={keyword} />
     </div>
