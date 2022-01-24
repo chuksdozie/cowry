@@ -46,7 +46,7 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
     <div
       style={{
         display: "flex",
-        width: "80%",
+        width: "85%",
         justifyContent: "space-evenly",
         padding: "0px 0 15px",
         margin: "-45px 0px 0px",
