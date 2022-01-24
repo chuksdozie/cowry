@@ -32,7 +32,7 @@ export const getPhotos = () => {
 
     var config = {
       method: "get",
-      url: "https://api.unsplash.com/search/photos?query=african&order_by=relevant&orientation=landscape&per_page=30",
+      url: "https://api.unsplash.com/search/photos?query=african&order_by=relevant&orientation=landscape&per_page=32",
       headers: {
         Authorization: "Client-ID jmCEZmTKNDAYL8p-FSQ92eVRtDWplRX45LiU3AL_nig",
         // Cookie: "ugid=3b076f8d8069f3303040185b4a2ac8755475613",

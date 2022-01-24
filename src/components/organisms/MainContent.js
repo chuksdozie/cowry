@@ -46,7 +46,7 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
     <div
       style={{
         display: "flex",
-        width: "100%",
+        width: "80%",
         justifyContent: "space-evenly",
         padding: "0px 0 15px",
         margin: "-45px 0px 0px",
@@ -139,7 +139,7 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
               <CardMedia
                 component="img"
                 height="auto"
-                image={selection.urls.raw || "/image.jpg"}
+                image={selection.urls.small || "/image.jpg"}
                 alt=""
                 style={{
                   height: "80%",
