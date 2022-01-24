@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 // import Text from "../atoms/Text";
 import InputBox from "../atoms/InputBox";
-import MainButton from "../atoms/MyButton";
+// import MainButton from "../atoms/MyButton";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { BiSearch } from "react-icons/bi";
+// import { BiSearch } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const SearchHeader = ({ ...props }) => {
