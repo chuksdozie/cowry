@@ -51,13 +51,13 @@ const SearchHeader = ({ ...props }) => {
             justifyContent: "center",
           }}
         >
-          <Grid
+          {/* <Grid
             item
             xs={0.5}
             style={showSearch ? { display: "block" } : { display: "none" }}
           >
             <MainButton color="#808080" text={<BiSearch />} />
-          </Grid>
+          </Grid> */}
           <Grid
             item
             xs={9}

@@ -26,7 +26,7 @@ const MainButton = (props) => {
   return (
     <div>
       <Grid item xs={12}>
-        <MyButton fullWidth onClick={onClick}>
+        <MyButton fullWidth onClick={onClick} name="main button">
           {text || "insert a text"}
         </MyButton>
       </Grid>
