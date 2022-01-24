@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { connect } from "react-redux";
 import { getPhotos } from "../../redux/photo/photoActions";
 // import { getPhotos } from "../../redux";
 import WeatherCard from "../molecules/WeatherCard";
-import Modal from "@mui/material/Modal";
+
+// import Modal from "@mui/material/Modal";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+const Modal = React.lazy(() => import("@mui/material/Modal"));
 
 const MainContent = ({ photoData, getPhoto, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -117,60 +119,62 @@ const MainContent = ({ photoData, getPhoto, ...props }) => {
           <WeatherCard />
         </div>
       )}
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-        onClick={() => handleClose()}
-        style={{
-          display: "flex",
-          backgroundColor: "rgba(214, 214, 214, 0.8)",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100vh",
-        }}
-      >
-        {selection.id ? (
-          <Card sx={{ maxWidth: 600, width: "80%", border: "0px" }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="auto"
-                image={selection.urls.small || "/image.jpg"}
-                alt=""
-                style={{
-                  height: "80%",
-                  width: "100%",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                }}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {selection.alt_description || "No Description"}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {selection.user.name || "Unknown Author"}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button
-                size="small"
-                color="primary"
-                onClick={() => handleClose()}
-              >
-                Close
-              </Button>
-            </CardActions>
-          </Card>
-        ) : (
-          <h2>Not Available</h2>
-        )}
-      </Modal>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Modal
+          hideBackdrop
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="child-modal-title"
+          aria-describedby="child-modal-description"
+          onClick={() => handleClose()}
+          style={{
+            display: "flex",
+            backgroundColor: "rgba(214, 214, 214, 0.8)",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100vh",
+          }}
+        >
+          {selection.id ? (
+            <Card sx={{ maxWidth: 600, width: "80%", border: "0px" }}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="auto"
+                  image={selection.urls.small || "/image.jpg"}
+                  alt=""
+                  style={{
+                    height: "80%",
+                    width: "100%",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {selection.alt_description || "No Description"}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {selection.user.name || "Unknown Author"}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => handleClose()}
+                >
+                  Close
+                </Button>
+              </CardActions>
+            </Card>
+          ) : (
+            <h2>Not Available</h2>
+          )}
+        </Modal>
+      </Suspense>
     </div>
   );
 };
