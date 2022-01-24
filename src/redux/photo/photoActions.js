@@ -43,6 +43,8 @@ export const getPhotos = () => {
       .then((response) => {
         // response.data is the array of users
         const photos = response.data.results;
+        response.headers["cache-control"] = "max-age=31536000";
+        // console.log("header", response.headers);
         dispatch(getPhotosSuccess(photos));
       })
       .catch((error) => {
